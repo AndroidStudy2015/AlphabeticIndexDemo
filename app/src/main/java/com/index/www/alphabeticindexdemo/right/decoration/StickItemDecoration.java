@@ -1,4 +1,4 @@
-package com.index.www.alphabeticindexdemo.right;
+package com.index.www.alphabeticindexdemo.right.decoration;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -6,6 +6,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import com.index.www.alphabeticindexdemo.right.bean.GroupInfo;
 
 public class StickItemDecoration extends RecyclerView.ItemDecoration {
 // 参考资料：https://blog.csdn.net/briblue/article/details/70211942
@@ -139,9 +141,16 @@ public class StickItemDecoration extends RecyclerView.ItemDecoration {
 //        float titleY = bottom - mHeaderHeight / 2 + mTextsize / 2;
 
         //绘制Title
-        c.drawText(groupinfo.getTitle(), titleX, titleY, mTextPaint);
+        String title = groupinfo.getTitle();
+
+        c.drawText(title, titleX, titleY, mTextPaint);
     }
 
+
+    /**
+     * StickItemDecoration需要通过GroupInfo，得知在整个list里位于position位置的item，在自己的小组内的具体信息
+     * 从而得知它属于那个索引，他是该小组第一位时，要显示头部，位于最后一位时，滑动出页面时候，要有推移效果
+     */
     public interface GroupInfoCallback {
         GroupInfo getGroupInfo(int position);
     }
@@ -203,8 +212,8 @@ public class StickItemDecoration extends RecyclerView.ItemDecoration {
         }
 
         public StickItemDecoration build() {
-            StickItemDecoration decoration = new StickItemDecoration(mBgColor, mTextColor, mDividerHeight, mHeaderHeight, mTextsize, mTextOffsetX, mCallback);
-            return decoration;
+            return new StickItemDecoration(mBgColor, mTextColor, mDividerHeight,
+                    mHeaderHeight, mTextsize, mTextOffsetX, mCallback);
         }
 
 

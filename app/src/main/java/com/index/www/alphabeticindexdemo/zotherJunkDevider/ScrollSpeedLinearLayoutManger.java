@@ -1,4 +1,4 @@
-package com.index.www.alphabeticindexdemo.otherDevider;
+package com.index.www.alphabeticindexdemo.zotherJunkDevider;
 
 import android.content.Context;
 import android.graphics.PointF;

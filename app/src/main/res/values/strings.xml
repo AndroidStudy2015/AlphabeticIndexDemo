@@ -1,3 +1,193 @@
 <resources>
     <string name="app_name">AlphabeticIndexDemo</string>
+
+
+    <string-array name="citys">
+
+        <item>热门</item>
+        <item>A北京</item>
+        <item>AB北京</item>
+        <item>AC北京</item>
+        <item>ABC北京</item>
+        <item>AD北京</item>
+        <item>AF北京</item>
+        <item>ADD北京</item>
+        <item>AHY北京</item>
+
+
+        <item>Bgfdsd北京</item>
+        <item>Bsdfs北京</item>
+        <item>Bsdf北京</item>
+        <item>Bsdfs北京</item>
+        <item>Bsf北京</item>
+        <item>Bgfsd北京</item>
+        <item>Berw北京</item>
+        <item>Bfrweas北京</item>
+
+        <item>Csda北京</item>
+        <item>Cbrevd北京</item>
+        <item>C北京</item>
+        <item>Cberavsd北京</item>
+        <item>Cbdfsvd北京</item>
+        <item>C北京</item>
+        <item>C北京</item>
+        <item>C北京</item>
+        <item>097</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>098</item>
+        <item>###</item>
+        <item>+123</item>
+        <item>+1231</item>
+        <item>+1231</item>
+        <item>+1231</item>
+        <item>+1231</item>
+        <item>+1231</item>
+        <item>+1231</item>
+        <item>+1231</item>
+        <item>+1231</item>
+        <item>100</item>
+
+
+
+        <item>D北京</item>
+        <item>D北京</item>
+        <item>Dsdfsdfsdf北京</item>
+        <item>D北京</item>
+        <item>D北京</item>
+        <item>Dfsf北京</item>
+        <item>D北京</item>
+        <item>D北京</item>
+        <item>D北京</item>
+        <item>D北京</item>
+        <item>D北京</item>
+        <item>D北京</item>
+        <item>D北京</item>
+        <item>D北京</item>
+        <item>D北京</item>
+
+
+        <item>F北京</item>
+        <item>F北京</item>
+        <item>F北京</item>
+
+        <item>E北京</item>
+        <item>E北京</item>
+        <item>E北京</item>
+        <item>E北京</item>
+        <item>E北京</item>
+        <item>E北京</item>
+        <item>E北京</item>
+
+        <item>G北京</item>
+        <item>G北京</item>
+        <item>G北京</item>
+        <item>G北京</item>
+        <item>G北京</item>
+        <item>G北京</item>
+
+
+
+        <item>Q北京</item>
+        <item>Qsdfasfs北京</item>
+        <item>Qafasdfs北京</item>
+        <item>Qasfasdf北京</item>
+
+
+        <item>Z北京</item>
+        <item>Zwef北京</item>
+        <item>Zfwea北京</item>
+        <item>Zwe北京</item>
+        <item>Z北京</item>
+        <item>Z北京</item>
+        <item>Z北京</item>
+        <item>Z北京</item>
+        <item>Zwsadfsdfwe北京</item>
+
+
+        <item>Ywfwe北京</item>
+        <item>Y北京</item>
+        <item>Y北京</item>
+        <item>Y北京</item>
+
+
+        <item>C北京</item>
+
+        <item>Z北京</item>
+
+        <item>E北京</item>
+        <item>Efwwe北京</item>
+        <item>E北京</item>
+        <item>E北京</item>
+        <item>E北京</item>
+        <item>E北京</item>
+        <item>E北京</item>
+        <item>E北京</item>
+        <item>E北京</item>
+        <item>E北京</item>
+        <item>E北京</item>
+        <item>E北京</item>
+
+
+
+
+
+    </string-array>
+
+
+    <string-array name="index">
+
+        <item>定位</item>
+        <item>热门</item>
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+        <item>I</item>
+        <item>J</item>
+        <item>K</item>
+        <item>L</item>
+        <item>M</item>
+        <item>N</item>
+        <item>O</item>
+        <item>P</item>
+        <item>Q</item>
+        <item>R</item>
+        <item>S</item>
+        <item>T</item>
+        <item>U</item>
+        <item>V</item>
+        <item>W</item>
+        <item>X</item>
+        <item>Y</item>
+        <item>Z</item>
+        <item>#</item>
+        <item>*</item>
+
+
+
+
+
+    </string-array>
 </resources>

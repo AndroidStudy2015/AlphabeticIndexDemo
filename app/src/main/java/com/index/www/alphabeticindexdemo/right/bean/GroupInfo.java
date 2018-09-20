@@ -1,8 +1,6 @@
-package com.index.www.alphabeticindexdemo.right;
+package com.index.www.alphabeticindexdemo.right.bean;
 
 public class GroupInfo {
-    //组号
-    private int mGroupID;
     // Header 的 title
     private String mTitle;
 
@@ -12,18 +10,11 @@ public class GroupInfo {
     private int mGroupLength;
 
 
-    public GroupInfo(int groupId, String title) {
-        mGroupID = groupId;
+
+    public GroupInfo( String title) {
         mTitle = title;
     }
 
-    public int getGroupID() {
-        return mGroupID;
-    }
-
-    public void setGroupID(int groupID) {
-        mGroupID = groupID;
-    }
 
     public String getTitle() {
         return mTitle;
@@ -36,7 +27,6 @@ public class GroupInfo {
     public int getPosition() {
         return position;
     }
-
 
     public void setPosition(int position) {
         this.position = position;
