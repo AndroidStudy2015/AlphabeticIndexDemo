@@ -13,7 +13,8 @@ public class SortHelper {
     /**
      * 返回一个按照首字母排序完成后的列表
      *
-     * @param rawArray 未排序的string数组
+     * @param rawArray         未排序的string数组
+     * @param otherFirstLetter 当城市元素列表里的首字母，在indexBar里找不到时，把他归入otherFirstLetter（例如：#）
      * @return
      */
     public static List<ElementInfo> sortByLetter(String[] rawArray, List<String> indexList, String otherFirstLetter) {
@@ -75,7 +76,7 @@ public class SortHelper {
      * @param rawList 未排序的stringList
      * @return
      */
-    public static List<ElementInfo> sortByLetter(List<String> rawList, List<String> indexList,String otherFirstLetter) {
+    public static List<ElementInfo> sortByLetter(List<String> rawList, List<String> indexList, String otherFirstLetter) {
 
 
         List<ElementInfo> sortList = new ArrayList<>();
@@ -143,8 +144,6 @@ public class SortHelper {
 
         return firstLetterList;
     }
-
-
 
 
 }

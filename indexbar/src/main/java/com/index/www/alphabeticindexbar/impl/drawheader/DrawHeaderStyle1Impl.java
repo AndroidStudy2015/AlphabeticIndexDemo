@@ -12,9 +12,9 @@ public class DrawHeaderStyle1Impl implements IDrawHeader {
 
     @Override
     public void drawHeaderRect(Canvas canvas, Paint paint, GroupInfo groupinfo, int left, int top, int right, int bottom) {
-        int bgColor = Color.LTGRAY;
+        int bgColor = 0xFFededed;
         int textColor = Color.BLUE;
-        int textSize = 20;
+        int textSize = 25;
         int textOffsetX = 30;
 
         //绘制Header

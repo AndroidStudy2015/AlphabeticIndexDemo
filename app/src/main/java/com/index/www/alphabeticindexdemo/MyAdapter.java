@@ -26,10 +26,14 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if (position==0){
+        if (position == 0) {
             return 0;
-        }else {
+        }
+        if (position == 1) {
             return 1;
+
+        } else {
+            return 2;
         }
     }
 
@@ -37,11 +41,15 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         int itemViewType = getItemViewType(i);
-        if (itemViewType==0){
+        if (itemViewType == 0) {
+            View view = LayoutInflater.from(mContext).inflate(R.layout.item0, viewGroup, false);
+            return new MyVh0(view);
+
+        } else if (itemViewType == 1) {
             View view = LayoutInflater.from(mContext).inflate(R.layout.item1, viewGroup, false);
             return new MyVh1(view);
 
-        }else {
+        } else {
             View view = LayoutInflater.from(mContext).inflate(R.layout.item2, viewGroup, false);
             return new MyVh2(view);
 
@@ -50,13 +58,16 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder myVh, int i) {
-        if (myVh instanceof MyVh1){
-            MyVh1 vh1= (MyVh1) myVh;
-//            vh1.mTv.setText(mData.get(i).getName()+"head");
+        if (myVh instanceof MyVh0) {
+            MyVh0 vh0 = (MyVh0) myVh;
 
         }
-        if (myVh instanceof MyVh2){
-            MyVh2 vh2= (MyVh2) myVh;
+        if (myVh instanceof MyVh1) {
+            MyVh1 vh1 = (MyVh1) myVh;
+
+        }
+        if (myVh instanceof MyVh2) {
+            MyVh2 vh2 = (MyVh2) myVh;
             vh2.mTv.setText(mData.get(i).getName());
 
         }
@@ -68,18 +79,20 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return mData.size();
     }
 
+    class MyVh0 extends RecyclerView.ViewHolder {
 
+
+        public MyVh0(@NonNull View itemView) {
+            super(itemView);
+        }
+    }
     class MyVh1 extends RecyclerView.ViewHolder {
 
 
-        private final TextView mTv;
-
         public MyVh1(@NonNull View itemView) {
             super(itemView);
-            mTv = itemView.findViewById(R.id.tv);
         }
     }
-
 
 
     class MyVh2 extends RecyclerView.ViewHolder {
