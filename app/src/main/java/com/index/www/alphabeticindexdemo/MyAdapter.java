@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.index.www.alphabeticindexdemo.right.bean.ElementInfo;
+import com.index.www.alphabeticindexbar.bean.ElementInfo;
 
 import java.util.List;
 

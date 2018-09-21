@@ -1,4 +1,4 @@
-package com.index.www.alphabeticindexbar;
+package com.index.www.alphabeticindexbar.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,6 +11,8 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.index.www.alphabeticindexbar.R;
 
 import java.util.List;
 
@@ -28,11 +30,11 @@ public class IndexBarView extends View {
     /**
      * 控件上padding，也就是说，字母在此范围内不能绘制
      */
-    private int mPaddingTop = 30;
+    private int mPaddingTop = 10;
     /**
      * 控件下padding，也就是说，字母在此范围内不能绘制
      */
-    private int mPaddingBottom = 30;
+    private int mPaddingBottom = 10;
     /**
      * 绘制字母的区域高度：
      * mUsefulHeight = mTotalHeight - mPaddingTop - mPaddingBottom;
@@ -60,11 +62,11 @@ public class IndexBarView extends View {
     /**
      * 不触摸的时候，字母索引的颜色
      */
-    int mTextDefaultColor;
+    int mTextDefaultColor=0x85555555;
     /**
      * 触摸的时候，字母索引的颜色
      */
-    int mTextPressColor;
+    int mTextPressColor=0xff555555;
     /**
      * 触摸时候，要不要改变索引字母颜色，默认为false，打开后，每次触摸down和up都会调用invalid去重绘onDraw，绘影响效率
      */
@@ -90,7 +92,7 @@ public class IndexBarView extends View {
     /**
      * 触摸到当前索引时候，字母要改变的颜色值
      */
-    private int mCurrentIndexColor;
+    private int mCurrentIndexColor=0xFFDE5713;
 
     /**
      * 控件没有点击时候的默认背景资源
@@ -119,7 +121,7 @@ public class IndexBarView extends View {
      * 大于1个字符的索引，为了美观，可以让其缩小点尺寸，例如：热门
      * 默认为1.0,即与1个字符的索引字母高度一样
      */
-    private float mLongTextSmallScale = 1.0f;
+    private float mLongTextSmallScale = 0.7f;
 
 
     public IndexBarView(@NonNull Context context) {

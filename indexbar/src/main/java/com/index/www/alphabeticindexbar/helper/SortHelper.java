@@ -1,7 +1,7 @@
-package com.index.www.alphabeticindexdemo.right.util;
+package com.index.www.alphabeticindexbar.helper;
 
 import com.github.promeg.pinyinhelper.Pinyin;
-import com.index.www.alphabeticindexdemo.right.bean.ElementInfo;
+import com.index.www.alphabeticindexbar.bean.ElementInfo;
 
 import java.util.ArrayList;
 import java.util.Collections;

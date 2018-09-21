@@ -1,22 +1,27 @@
-package com.index.www.alphabeticindexbar.util;
+package com.index.www.alphabeticindexbar.impl.groupinfo;
 
-import com.index.www.alphabeticindexdemo.right.bean.ElementInfo;
-import com.index.www.alphabeticindexdemo.right.bean.GroupInfo;
-import com.index.www.alphabeticindexdemo.right.decoration.StickItemDecoration;
+import com.index.www.alphabeticindexbar.bean.ElementInfo;
+import com.index.www.alphabeticindexbar.bean.GroupInfo;
+import com.index.www.alphabeticindexbar.helper.SortHelper;
+import com.index.www.alphabeticindexbar.interfaces.IGroupInfo;
 
 import java.util.List;
 
 public class GroupInfoCallbackFactory {
 
 
-
-    public static StickItemDecoration.GroupInfoCallback getInstance(final List<ElementInfo> sortList, final List<String> indexLetterList, final List<String> firstLetterList) {
+    public static IGroupInfo getInstance(final List<ElementInfo> sortList) {
 
 //        这个方法，主要是把所有的元素列表进行分组（按照首字母分组）
 //        例如：AAAAAAABBBBBBBCCCCC,分为3组，得到分组信息
 //
 
-        StickItemDecoration.GroupInfoCallback callback = new StickItemDecoration.GroupInfoCallback() {
+        //                定义了分组信息，主要是想利用 isFirstViewInGroup  和  isLastViewInGroup 来控制粘性头部的显示问题
+
+
+        IGroupInfo callback = new IGroupInfo() {
+
+
             @Override
             public GroupInfo getGroupInfo(int position) {
 
@@ -27,6 +32,7 @@ public class GroupInfoCallbackFactory {
                 //  new 分组对象
                 GroupInfo groupInfo = new GroupInfo(firstLetter);
                 // 最主要的在这里，
+                List<String> firstLetterList = SortHelper.getFirstLetterListBySorted(sortList);
                 int startIndex = firstLetterList.indexOf(firstLetter);
                 int endIndex = firstLetterList.lastIndexOf(firstLetter);
                 // 计算出所在分组的组内成员个数（截止位置-起始位置+1）
@@ -34,7 +40,6 @@ public class GroupInfoCallbackFactory {
                 // 计算出当前position的元素，在自己的小组内的位置
                 groupInfo.setPosition(position - firstLetterList.indexOf(firstLetter));
 
-//                以上定义了分组信息，主要是想利用 isFirstViewInGroup  和  isLastViewInGroup 来控制粘性头部的显示问题
 
 //                /**
 //                 * 分组逻辑，这里为了测试每10个数据为一组。大家可以在实际开发中

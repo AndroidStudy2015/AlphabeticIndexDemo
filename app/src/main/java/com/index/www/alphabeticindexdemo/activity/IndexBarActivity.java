@@ -1,7 +1,5 @@
 package com.index.www.alphabeticindexdemo.activity;
 
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -11,14 +9,14 @@ import android.util.Log;
 
 import com.github.promeg.pinyinhelper.Pinyin;
 import com.github.promeg.pinyinhelper.PinyinMapDict;
-import com.index.www.alphabeticindexbar.IndexBarView;
+import com.index.www.alphabeticindexbar.bean.ElementInfo;
+import com.index.www.alphabeticindexbar.decoration.StickItemDecoration;
+import com.index.www.alphabeticindexbar.helper.InteractHelper;
+import com.index.www.alphabeticindexbar.helper.SortHelper;
+import com.index.www.alphabeticindexbar.impl.groupinfo.GroupInfoDefalutImpl;
+import com.index.www.alphabeticindexbar.view.IndexBarView;
 import com.index.www.alphabeticindexdemo.MyAdapter;
 import com.index.www.alphabeticindexdemo.R;
-import com.index.www.alphabeticindexdemo.right.decoration.StickItemDecoration;
-import com.index.www.alphabeticindexdemo.right.bean.ElementInfo;
-import com.index.www.alphabeticindexdemo.right.util.GroupInfoCallbackFactory;
-import com.index.www.alphabeticindexdemo.right.util.InteractHelper;
-import com.index.www.alphabeticindexdemo.right.util.SortHelper;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -31,30 +29,33 @@ public class IndexBarActivity extends AppCompatActivity {
     private List<String> mIndexLetterList;
     private GridLayoutManager mLayout;
     private List<ElementInfo> mSortList;
-    private List<String> mFirstLetterList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index_bar);
 
+//        得到原始数据
         String[] rawCitys = getResources().getStringArray(R.array.citys);
-        String[] codes = getResources().getStringArray(R.array.index);
-        mIndexLetterList = Arrays.asList(codes);
+        String[] indexs = getResources().getStringArray(R.array.index);
+        mIndexLetterList = Arrays.asList(indexs);
 
 
-//        添加自定义词典
+//        添加自定义词典，因为使用到拼音排序，有些你要特殊处理的文字，可以在这里定义
         Pinyin.init(Pinyin.newConfig()
                 .with(new PinyinMapDict() {
                     @Override
                     public Map<String, String[]> mapping() {
                         HashMap<String, String[]> map = new HashMap<String, String[]>();
                         map.put("重庆", new String[]{"CHONG", "QING"});
-                        map.put("乐山", new String[]{"yue", "shan"});
+                        map.put("乐亭", new String[]{"LAO", "TING"});
+                        map.put("单县", new String[]{"SHAN", "XIAN"});
 
                         return map;
                     }
                 }));
+
+//        得到排序后的
         mSortList = SortHelper.sortByLetter(rawCitys, mIndexLetterList, "#");
 
 
@@ -66,7 +67,6 @@ public class IndexBarActivity extends AppCompatActivity {
         element.setFirstLetter("热门");
         mSortList.add(1, element);
 
-        mFirstLetterList = SortHelper.getFirstLetterListBySorted(mSortList);
 
         setIndexBarView();
         setRecyclerViewBarView();
@@ -78,24 +78,24 @@ public class IndexBarActivity extends AppCompatActivity {
 
 
         mIndexBarView.setLetterList(mIndexLetterList);
-        mIndexBarView.setDefaultBackgroundResource(R.drawable.default_bg);
-        mIndexBarView.setPressBackgroundResource(R.drawable.press_bg);
-        mIndexBarView.setPaddingTop(10);
-        mIndexBarView.setPaddingBottom(10);
-        mIndexBarView.setTextDefaultColor(0x85555555);
-        mIndexBarView.setTextPressColor(0xff555555);
-        mIndexBarView.setCurrentIndexColor(0xFFDE5713);
-
-        mIndexBarView.setLetterSizeScale(0.85f);
-        mIndexBarView.setLongTextSmallScale(0.7f);
-        mIndexBarView.setTypeface(Typeface.MONOSPACE);
+//        mIndexBarView.setDefaultBackgroundResource(R.drawable.default_bg);
+//        mIndexBarView.setPressBackgroundResource(R.drawable.press_bg);
+//        mIndexBarView.setPaddingTop(10);
+//        mIndexBarView.setPaddingBottom(10);
+//        mIndexBarView.setTextDefaultColor(0x85555555);
+//        mIndexBarView.setTextPressColor(0xff555555);
+//        mIndexBarView.setCurrentIndexColor(0xFFDE5713);
+//
+//        mIndexBarView.setLetterSizeScale(0.85f);
+//        mIndexBarView.setLongTextSmallScale(0.7f);
+//        mIndexBarView.setTypeface(Typeface.MONOSPACE);
 
         mIndexBarView.setOnTouchIndexBarListener(new IndexBarView.OnTouchIndexBarListener() {
             @Override
             public void onTouchIndexBar(int index) {
                 Log.e("ccc0", index + "");
 
-                boolean success = InteractHelper.letRecyclerviewScrollToIndexPostion(index, mLayout, mFirstLetterList, mIndexLetterList);
+                boolean success = InteractHelper.letRecyclerviewScrollToIndexPostion(index, mLayout, mSortList, mIndexLetterList);
                 if (!success) {
                     //如果手指触摸的字母，RecyclerView里面没有包含以这个字母开头的元素，那么返回false，
                     // 让indexbarview显示当前的第一个元素的首字母的索引
@@ -121,15 +121,7 @@ public class IndexBarActivity extends AppCompatActivity {
         mLayout = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(mLayout);
         recyclerView.setAdapter(new MyAdapter(this, mSortList));
-        recyclerView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                InteractHelper.updateIndexBar(mIndexBarView, mLayout, mSortList, mIndexLetterList);
-
-            }
-        }, 300);//立即执行，adapter没执行完，这里会报错
-
+        mIndexBarView.setCurrentIndex(0);//初始化让indexbar选中第0个索引
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
@@ -143,11 +135,8 @@ public class IndexBarActivity extends AppCompatActivity {
 
 
         StickItemDecoration.Builder builder = new StickItemDecoration.Builder();
-        StickItemDecoration decor = builder.bgColor(Color.LTGRAY)
-                .callback(GroupInfoCallbackFactory.getInstance(mSortList, mIndexLetterList, mFirstLetterList))
-                .textColor(Color.RED)
-                .textOffsetX(30)
-                .textsize(30)
+        StickItemDecoration decor = builder
+                .iGroupInfo(new GroupInfoDefalutImpl(mSortList))//必须设置
                 .dividerHeight(1)
                 .headerHeight(70)
                 .build();

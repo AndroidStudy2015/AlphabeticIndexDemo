@@ -13,7 +13,7 @@
         android:background="@android:color/darker_gray"
         android:layout_height="match_parent" />
 
-    <com.index.www.alphabeticindexbar.IndexBarView
+    <com.index.www.alphabeticindexbar.view.IndexBarView
         android:id="@+id/indexbar"
         android:layout_width="30dp"
         android:layout_height="match_parent"
