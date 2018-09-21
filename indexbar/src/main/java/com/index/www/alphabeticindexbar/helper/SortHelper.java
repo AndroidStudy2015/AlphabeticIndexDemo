@@ -31,6 +31,7 @@ public class SortHelper {
             ElementInfo elementInfo = new ElementInfo();
             elementInfo.setName(city);
             elementInfo.setPinyin(pinyin);
+            elementInfo.setRawPostion(i);
 
             String firstLetter = pinyin.substring(0, 1);
 

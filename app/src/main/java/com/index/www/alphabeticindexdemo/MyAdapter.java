@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.index.www.alphabeticindexbar.bean.ElementInfo;
 
@@ -57,7 +58,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder myVh, int i) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder myVh, final int i) {
         if (myVh instanceof MyVh0) {
             MyVh0 vh0 = (MyVh0) myVh;
 
@@ -68,7 +69,16 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
         if (myVh instanceof MyVh2) {
             MyVh2 vh2 = (MyVh2) myVh;
-            vh2.mTv.setText(mData.get(i).getName());
+            final ElementInfo elementInfo = mData.get(i);
+            vh2.mTv.setText(elementInfo.getName());
+
+            vh2.mTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext, "该元素在原来列表中的索引" + elementInfo.getRawPostion()
+                            + "---排序后的索引" + (i) + "---name " + elementInfo.getName(), Toast.LENGTH_SHORT).show();
+                }
+            });
 
         }
 
@@ -86,6 +96,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             super(itemView);
         }
     }
+
     class MyVh1 extends RecyclerView.ViewHolder {
 
 
